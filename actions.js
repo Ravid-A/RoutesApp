@@ -24,8 +24,17 @@ router.post('/calcsal', (req, res) => {
 
     console.log(workingHours, payPerHour, payPerExtraHour, tax);
 
-    const regular_hours = 180;
-    const extra_hours = workingHours - regular_hours;
+    let regular_hours;
+    let extra_hours;
+
+    if(workingHours> 180)
+    {
+        regular_hours = 180;
+        extra_hours = workingHours - regular_hours;
+    } else{
+        regular_hours = workingHours;
+        extra_hours = 0;
+    }
 
     const salary = regular_hours*payPerHour+extra_hours*payPerExtraHour;
 
